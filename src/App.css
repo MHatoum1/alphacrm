@@ -1,0 +1,918 @@
+/* ==========================================================================
+   1. RESET & BASE
+   ========================================================================== */
+
+/* Reset margins, padding, borders, vertical alignment */
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+address,
+img,
+s,
+small,
+b,
+i,
+center,
+form,
+label,
+table,
+caption,
+details,
+footer,
+header,
+menu,
+nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+/* Prevent font-size adjustments on mobile */
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+/* Inherit box-sizing for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Table defaults */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Remove outline on focusable elements */
+div,
+input,
+select,
+button,
+a,
+a:focus {
+  outline: none;
+}
+
+/* Links and images */
+img,
+a img {
+  border: none;
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: #5e81f4;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   2. ICON FONTS (Line Awesome)
+   ========================================================================== */
+
+/* Base .la icon class */
+.la {
+  font-family: "Line Awesome Free";
+  font-weight: 900;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-size: 18px;
+}
+
+/* Spin keyframes */
+@-webkit-keyframes la-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes la-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon glyphs */
+.la-angle-down:before {
+  content: "\f107";
+}
+.la-angle-left:before {
+  content: "\f104";
+}
+.la-angle-right:before {
+  content: "\f105";
+}
+.la-bars:before {
+  content: "\f0c9";
+}
+.la-calendar-week:before {
+  content: "\f784";
+}
+.la-chart-area:before {
+  content: "\f1fe";
+}
+.la-chart-line:before {
+  content: "\f201";
+}
+.la-comments:before {
+  content: "\f086";
+}
+.la-globe:before {
+  content: "\f0ac";
+}
+.la-link:before {
+  content: "\f0c1";
+}
+.la-list:before {
+  content: "\f03a";
+}
+.la-poll-h:before {
+  content: "\f682";
+}
+.la-phone:before {
+  content: "\f095";
+}
+.la-tachometer-alt:before {
+  content: "\f3fd";
+}
+.la-toolbox:before {
+  content: "\f552";
+}
+.la-bullhorn:before {
+  content: "\f0a1";
+}
+.la-cog:before {
+  content: "\f013";
+}
+.la-file-download:before {
+  content: "\f56d";
+}
+.la-donate:before {
+  content: "\f4b9";
+}
+.la-users:before {
+  content: "\f0c0";
+}
+.la-money-bill-alt:before {
+  content: "\f3d1";
+}
+.la-user-friends:before {
+  content: "\f500";
+}
+.la-graduation-cap:before {
+  content: "\f19d";
+}
+.la-sign-out-alt:before {
+  content: "\f2f5";
+}
+.la-user:before {
+  content: "\f007";
+}
+.la-user-clock:before {
+  content: "\f4fd";
+}
+.la-wallet:before {
+  content: "\f555";
+}
+.la-table:before {
+  content: "\f0ce";
+}
+
+/* Font-face declarations */
+@font-face {
+  font-family: "Line Awesome Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url(./assets/fonts/la-brands-400.html);
+  src: url(./assets/fonts/la-brands-400d41d.html?#iefix) format("embedded-opentype"),
+       url(./assets/fonts/la-brands-400.woff2)       format("woff2"),
+       url(./assets/fonts/la-brands-400.woff)        format("woff"),
+       url(./assets/fonts/la-brands-401.html)        format("truetype"),
+       url(./assets/fonts/la-brands-402.html#lineawesome") format("svg");
+}
+@font-face {
+  font-family: "Line Awesome Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url(./assets/fonts/la-regular-400.html);
+  src: url(./assets/fonts/la-regular-400d41d.html?#iefix) format("embedded-opentype"),
+       url(./assets/fonts/la-regular-400.woff2)       format("woff2"),
+       url(./assets/fonts/la-regular-400.woff)        format("woff"),
+       url(./assets/fonts/la-regular-401.html)        format("truetype"),
+       url(./assets/fonts/la-regular-402.html#lineawesome") format("svg");
+}
+@font-face {
+  font-family: "Line Awesome Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: auto;
+  src: url(./assets/fonts/la-solid-900.html);
+  src: url(./assets/fonts/la-solid-900d41d.html?#iefix) format("embedded-opentype"),
+       url(./assets/fonts/la-solid-900.woff2)         format("woff2"),
+       url(./assets/fonts/la-solid-900.woff)          format("woff"),
+       url(./assets/fonts/la-solid-901.html)          format("truetype"),
+       url(./assets/fonts/la-solid-902.html#lineawesome") format("svg");
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY & BASE ELEMENTS
+   ========================================================================== */
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  color: #1c1d21;
+  line-height: 1.5;
+}
+
+button,
+input,
+select {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  color: #1c1d21;
+  font-weight: 700;
+}
+
+button {
+  background: transparent;
+  line-height: 1;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input::-webkit-input-placeholder,
+input::-ms-input-placeholder,
+input::placeholder {
+  color: #8181a5;
+}
+
+/* ==========================================================================
+   4. UTILITIES & COMPONENTS
+   ========================================================================== */
+
+/* Buttons with icons */
+.action {
+  display: inline-flex;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 9px;
+  background: #e9e9f1;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #8181a5;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  vertical-align: middle;
+}
+.action:hover {
+  color: #1c1d21;
+}
+.action .la {
+  font-size: 16px;
+}
+
+/* Section titles */
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Switch component */
+.switch {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8181a5;
+  line-height: 1.46;
+  user-select: none;
+  cursor: pointer;
+}
+.switch__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.switch__content {
+  display: block;
+  min-height: 20px;
+  padding-left: 32px;
+  transition: opacity 0.2s, color 0.2s;
+}
+.switch__content::before,
+.switch__content::after {
+  content: "";
+  position: absolute;
+}
+.switch__content::before {
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #f0f0f3;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.switch__content::after {
+  opacity: 0;
+  transition: all 0.2s;
+}
+.switch__content:empty {
+  padding-left: 20px;
+}
+
+/* Checkbox & radio states */
+.switch__input[type="checkbox"] + .switch__content::after {
+  top: 6px;
+  left: 5px;
+  width: 11px;
+  height: 8px;
+  background-image: url("data:image/svg+xml,<svg…fill='%23fff'/>");
+}
+.switch__input[type="checkbox"]:checked + .switch__content::before {
+  background: #5e81f4;
+}
+.switch__input[type="checkbox"]:checked + .switch__content::after {
+  opacity: 1;
+}
+.switch__input[type="checkbox"].error + .switch__content::after {
+  background-image: url("data:image/svg+xml,<svg…fill='%23FF808B'/>");
+}
+.switch__input[type="checkbox"].success + .switch__content::after {
+  background-image: url("data:image/svg+xml,<svg…fill='%237CE7AC'/>");
+}
+.switch__input[type="radio"] + .switch__content::before {
+  border-radius: 50%;
+}
+.switch__input[type="radio"] + .switch__content::after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+.switch__input[type="radio"].error + .switch__content::after {
+  background: #ff808b;
+}
+.switch__input[type="radio"].success + .switch__content::after {
+  background: #7ce7ac;
+}
+
+/* Error / Success states */
+.switch__input.error + .switch__content {
+  color: #ff808b;
+}
+.switch__input.error + .switch__content::before {
+  background: rgba(255, 128, 139, 0.15);
+}
+.switch__input.success + .switch__content {
+  color: #7ce7ac;
+}
+.switch__input.success + .switch__content::before {
+  background: rgba(124, 231, 172, 0.15);
+}
+
+/* ==========================================================================
+   5. FORM FIELDS
+   ========================================================================== */
+
+.field__label {
+  position: relative;
+  margin-bottom: -10px;
+  font-size: 12px;
+  color: #8181a5;
+  z-index: 2;
+}
+.field__input,
+.field__select {
+  display: block;
+  width: 100%;
+  height: 54px;
+  padding-right: 24px;
+  background-color: transparent;
+  border: 0 0 1px solid #f0f0f3;
+  transition: border-color 0.2s;
+}
+.field__input:focus,
+.field__select:focus {
+  border-color: #5e81f4;
+}
+.field__select {
+  appearance: none;
+  color: #8181a5;
+  line-height: 1;
+}
+.field__select.active {
+  color: #1c1d21;
+}
+.field__icon {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  color: #8181a5;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Field states */
+.field.active .field__icon {
+  color: #1c1d21;
+}
+.field.success .field__input {
+  border-color: #7ce7ac;
+}
+.field.success .field__icon {
+  color: #7ce7ac;
+}
+.field.error .field__input {
+  border-color: #ff808b;
+}
+.field.error .field__icon {
+  color: #ff808b;
+}
+
+/* ==========================================================================
+   6. CAPTION
+   ========================================================================== */
+
+.caption {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c1d21;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+}
+.caption .la {
+  position: relative;
+  top: -1px;
+  margin-right: 5px;
+}
+
+/* ==========================================================================
+   7. NAVIGATION & SIDEBAR
+   ========================================================================== */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* background: white; */
+  border-right: 1px solid #f0f0f3;
+}
+.nav.js-nav {
+  /* additional JS hook styles if needed */
+}
+.nav__list {
+  padding-bottom: 10px;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+.nav__item {
+  /* wrapper around each nav link */
+}
+.nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  color: #8181a5;
+  transition: color 0.2s;
+}
+.nav__link:hover {
+  color: #1c1d21;
+}
+.nav__link.active {
+  color: #1c1d21;
+}
+.nav__link.active::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 0;
+  bottom: 8px;
+  width: 2px;
+  background: #5e81f4;
+  border-radius: 2px;
+}
+.nav__link.nav__link_head {
+  min-height: 76px;
+}
+.nav__link.nav__link_menu {
+  display: none;
+}
+/* ──────────────────────────────────────────────────────────────────────────
+   ❶  Give the logo block some breathing-room (top of the sidebar)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   ❷  Keep collapsed vs. extended states tidy (optional)
+   ────────────────────────────────────────────────────────────────────────── */
+.sidebar.extended .nav__link_head {
+  /* on wide mode you might prefer a bit more air */
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
+
+.nav__preview {
+  display: flex;
+  position: relative;
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  flex: 0 0 48px;
+}
+.nav__preview .la {
+  font-size: 22px;
+}
+.nav__preview .nav__pic {
+  width: 30px;
+  /* border-radius: 5px; */
+}
+.nav__title {
+  display: none;
+  min-height: 48px;
+  padding: 5px 5px 5px 15px;
+  border-radius: 0 4px 4px 0;
+  font-weight: 700;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+/* Sidebar container */
+.sidebar {
+  /* display: flex; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+
+  z-index: 59;
+  /* width: 84px; */
+  /* transition: width 0.3s; */
+}
+.sidebar__nav {
+  position: relative;
+  /* width: 84px; */
+  z-index: 2;
+
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ------------------------------------------------------------------
+   LOGO SIZES
+   ------------------------------------------------------------------ */
+
+/* full logo ⇒ take the whole sidebar row (padding matches link paddings) */
+.nav__logo--full {
+  display: block;
+  width: 85%; /* stretch from left to right */
+  height: auto;
+  padding: 0 18px 0 5px; /* same 18 px horizontal gutter as other links */
+}
+
+/* icon logo ⇒ keep the old 30 px width */
+.nav__logo--icon {
+  width: 30px;
+  height: auto;
+}
+
+/* when collapsed there is no room for a title anyway */
+.sidebar.collapsed .nav__logo--full {
+  display: none;
+}
+.sidebar.extended .nav__logo--icon {
+  display: none;
+}
+
+/* ==========================================================================
+   8. LAYOUT HELPERS & UTILITY CLASSES
+   ========================================================================== */
+
+.series {
+  display: flex;
+  margin: 0 -24px -12px;
+  flex-wrap: wrap;
+}
+.container {
+  padding-left: 84px;
+}
+.container.extended {
+  padding-left: 84px;
+}
+.grid {
+  margin: 0 -24px -24px;
+  overflow: auto;
+}
+.search,
+.new,
+.sort {
+  position: relative;
+}
+.layout {
+  margin-bottom: -28px;
+}
+.data {
+  margin: 0 -24px -24px;
+}
+.user {
+  display: flex;
+  align-items: center;
+}
+.form__field {
+  margin-bottom: 22px;
+}
+.menu {
+  height: 100%;
+}
+.file {
+  position: relative;
+}
+
+/* ==========================================================================
+   9. SPECIFIC COMPONENT STYLES
+   ========================================================================== */
+
+.calendar {
+  border: 1px solid #f0f0f3;
+  border-radius: 8px;
+}
+.details {
+  margin-bottom: 22px;
+  border: 1px solid #f0f0f3;
+  border-radius: 12px;
+}
+.details__row {
+  display: flex;
+  padding: 14px;
+}
+.details__row:not(:last-child) {
+  border-bottom: 1px solid #f0f0f3;
+}
+.details__cell {
+  padding: 10px;
+}
+.details__cell_lg {
+  flex: 1 1 auto;
+}
+.details__link {
+  font-weight: 700;
+}
+.subscriptions__item {
+  display: flex;
+  padding: 24px 0;
+  color: #8181a5;
+  align-items: center;
+  justify-content: space-between;
+}
+.subscriptions__item:not(:last-child) {
+  border-bottom: 1px solid #f0f0f3;
+}
+.subscriptions__cell:first-child {
+  margin-right: 16px;
+}
+.subscriptions__title {
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.subscriptions__title.active {
+  color: #1c1d21;
+}
+.media {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   10. SUBMENU SPACING
+   ========================================================================== */
+
+.submenu {
+  margin: 8px 0 8px 10px;
+}
+.submenu .submenu-item {
+  padding-left: 2rem;
+  margin: 6px 0;
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES
+   ========================================================================== */
+
+/* Large screens */
+@media only screen and (min-width: 1340px) {
+  .nav.extended {
+    width: 242px;
+  }
+  .nav.extended .nav__title {
+    display: flex;
+  }
+  .nav.extended .nav__preview {
+    border-radius: 4px 0 0 4px;
+  }
+  .container.extended {
+    padding-left: 242px;
+  }
+}
+
+/* Medium screens */
+@media only screen and (max-width: 1339px) {
+  .container {
+    padding-left: 84px;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .calendar {
+    overflow: auto;
+  }
+  .details__row {
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile screens */
+@media only screen and (max-width: 767px) {
+  :root {
+    --nav-background: #ffffff;
+  }
+  body.dark-mode {
+    --nav-background: #1c1d21;
+  }
+  .nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+  }
+  .nav__list {
+    padding: 0;
+  }
+  .nav__link_head {
+    display: none;
+  }
+  .nav__link_menu {
+    display: flex;
+  }
+  .nav__link.nav__link_menu {
+    display: flex;
+  }
+  .nav__primary {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0 10px;
+    background: var(--nav-background);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s;
+    z-index: 4;
+  }
+  .nav__primary.hidden {
+    transform: translateY(calc(100% + 16px));
+  }
+  .nav__primary .nav__group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__primary .nav__link {
+    max-width: 56px;
+    padding: 14px 4px;
+    flex: 1;
+  }
+  .nav__primary .nav__link.active::after {
+    top: 0;
+    bottom: auto;
+    right: calc(50% - 24px);
+    width: 48px;
+    height: 2px;
+  }
+  .nav__secondary {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 48px 16px 92px;
+    background: #f5f5fa;
+    overflow: auto;
+    z-index: 2;
+  }
+  .nav__secondary.visible {
+    display: block;
+  }
+  .nav__secondary .nav__group {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav__secondary .nav__link {
+    min-height: 64px;
+    margin-bottom: 4px;
+    background: white;
+    border-radius: 10px;
+    order: 2;
+  }
+  .nav__secondary .nav__link.active::after {
+    left: 0;
+    right: auto;
+  }
+  .nav__secondary .nav__title {
+    display: flex;
+  }
+  .nav__secondary .nav__preview {
+    border-radius: 4px 0 0 4px;
+  }
+  .sidebar {
+    position: static;
+    height: auto;
+    background: none;
+  }
+  .sidebar__nav {
+    width: 0;
+    z-index: 59;
+  }
+  .series {
+    display: block;
+  }
+  .container,
+  .container.extended {
+    padding: 69px 0 0;
+  }
+  .grid {
+    margin: 0;
+  }
+  .sort {
+    margin-left: 6px;
+  }
+  .calendar {
+    background: white;
+  }
+  .details {
+    margin: 0 -16px 22px;
+    border-width: 1px 0;
+    border-radius: 0;
+  }
+  .details__row {
+    padding: 10px;
+  }
+  .details__cell {
+    padding: 6px;
+  }
+}

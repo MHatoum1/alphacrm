@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 180.67 300">
+  <!-- Generator: Adobe Illustrator 29.5.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 137)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #eb2229;
+      }
+
+      .st1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect class="st0" x="1.01" width="179.67" height="300"/>
+  <g>
+    <polyline class="st1" points="29.2 179.18 124.19 179.18 138.67 167.37 123.93 156.07 29.2 156.07"/>
+    <polyline class="st1" points="29.2 266.74 64.16 266.74 78.63 254.94 63.88 243.62 29.2 243.62"/>
+    <polyline class="st1" points="29.2 225.03 92.58 225.03 107.04 213.21 92.3 201.92 29.2 201.92"/>
+  </g>
+</svg>

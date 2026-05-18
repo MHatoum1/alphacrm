@@ -1,0 +1,306 @@
+{
+   "income_outgoing_source": {
+      "": "Please Select",
+      "neteller": "Neteller",
+      "skrill": "Skrill",
+      "banktransfer": "Bank Wire",
+      "usdt": "USDT"
+   },
+   "sector_of_activity": {
+      "": "Please Select",
+      "Financial services": "Financial services",
+      "Agriculture, Forestry and Fishing": "Agriculture, Forestry and Fishing",
+      "Architecture and Construction": "Architecture and Construction",
+      "Arts, Audio/Video technology & Communication": "Arts, Audio/Video technology & Communication",
+      "Business management and Administration": "Business management and Administration",
+      "Education & Training": "Education & Training",
+      "Government & Public Administration": "Government & Public Administration",
+      "Healthcare": "Healthcare",
+      "Hospitality & Tourism": "Hospitality & Tourism",
+      "Information Technology": "Information Technology",
+      "Legal Public Safety Corrections and Security": "Legal Public Safety Corrections and Security",
+      "Manufacturing": "Manufacturing",
+      "Marketing & Sales": "Marketing & Sales",
+      "Science and Technology, Engineering & Mathematics": "Science and Technology, Engineering & Mathematics",
+      "Transportation Distribution & Logistics": "Transportation Distribution & Logistics",
+      "Other": "Other"
+   },
+   "employment_status": {
+      "": "Please Select",
+      "employed": "Employed",
+      "self-employed": "Self employed",
+      "businessowner": "Business owner",
+      "retired": "Retired",
+      "student": "Student",
+      "unemployed": "Unemployed"
+   },
+   "profession": {
+      "": "Please Select",
+      "Accountants": "Accountants",
+      "Actuaries": "Actuaries",
+      "Advocates": "Advocates",
+      "Air Traffic Controllers": "Air Traffic Controllers",
+      "Architects": "Architects",
+      "Archivists": "Archivists",
+      "Audiologists": "Audiologists",
+      "Computer programmers": "Computer programmers",
+      "Dentists": "Dentists",
+      "Doctors": "Doctors",
+      "Economists": "Economists",
+      "Engineers": "Engineers",
+      "Financial analysts": "Financial analysts",
+      "Journalist": "Journalist",
+      "Lawyers": "Lawyers",
+      "Language professionals": "Language professionals",
+      "Mathematicians": "Mathematicians",
+      "Military Officers (upper level only)": "Military Officers (upper level only)",
+      "Nurses": "Nurses",
+      "Neuroscientists": "Neuroscientists",
+      "Occupational therapists": "Occupational therapists",
+      "Optometrists": "Optometrists",
+      "Pharmacists": "Pharmacists",
+      "Philosophers": "Philosophers",
+      "Physicians": "Physicians",
+      "Priests": "Priests",
+      "Pilots": "Pilots",
+      "Professor": "Professor",
+      "Psychologists": "Psychologists",
+      "Scientists": "Scientists",
+      "Social workers": "Social workers",
+      "Software engineers": "Software engineers",
+      "Speech Language Pathologists": "Speech Language Pathologists",
+      "Statisticians": "Statisticians",
+      "Surgeons": "Surgeons",
+      "Teachers": "Teachers",
+      "Translators and interpreters": "Translators and interpreters",
+      "Veterinarians": "Veterinarians",
+      "Other": "Other"
+   },
+   "annual_income": {
+      "": "Please Select",
+      "0-50,000": "0-50,000",
+      "50,000-100,000": "50,000-100,000",
+      "More than 1,000,000": "More than 100,000"
+   },
+   "net_worth": {
+      "": "Please Select",
+      "< 10,000 (USD)": "< 10,000 (USD)",
+      "10,000-50,000 (USD)": "10,000-50,000 (USD)",
+      "50,000-100,000 (USD)": "50,000-100,000 (USD)",
+      "> 100,000 (USD)": "> 100,000 (USD)"
+   },
+   "total_funds_to_invest": {
+      "": "Please Select",
+      "0-$500": "0-$500",
+      "$500-$2500": "$500-$2500",
+      "$2500-$5000": "$2500-$5000",
+      "$5000-$10000": "$5000-$10000",
+      "$10000-$25000": "$10000-$25000",
+      "Above $25000": "Above $25000"
+   },
+   "source_of_income": {
+      "": "Please Select",
+      "Savings": "Savings",
+      "Pension": "Pension",
+      "Family": "Family",
+      "Government Support": "Government Support",
+      "Inheritance": "Inheritance",
+      "Sale of Property": "Sale of Property",
+      "Salary": "Salary",
+      "Other": "Other"
+   },
+   "trading_experience": {
+      "": "Please Select",
+      "less_than_year": "Less than a year",
+      "one_three_years": "1-3 years",
+      "three_plus": "More than 3 years"
+   },
+   "reason_to_open": {
+      "": "Please Select",
+      "trading": "Trading",
+      "partnership": "Partnership",
+      "investment": "Investment",
+      "hedging": "Hedging"
+   },
+   "anticipated": {
+      "": "Please Select",
+      "$1-$1,000, $1,001-$5,000": "$1-$1,000, $1,001-$5,000",
+      "$5,001-$10,000": "$5,001-$10,000",
+      "$10,001-$50,000": "$10,001-$50,000",
+      "$50,001-$100,000": "$50,001-$100,000",
+      "More than $100,000": "More than $100,000"
+   },
+   "how_often_trade": {
+      "": "Please Select",
+      "none": "None",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+   },
+   "education": {
+      "": "Please Select",
+      "highschool": "High school",
+      "bachelor": "Bachelor degree or equivalent",
+      "master": "Master degree or equivalent",
+      "phd": "PHD or equivalent",
+      "none": "None"
+   },
+   "how_to_fund": {
+      "": "Please Select",
+      "bank": "Bank wire transfer",
+      "card": "Credit/debit card"
+   },
+   "types_of_markets": {
+      "forex": "Forex",
+      "binary options": "Binary Option",
+      "commodities": "Commodities",
+      "metals": "Metals",
+      "stock exchange": "Stock Exchange",
+      "bonds": "Bonds Market"
+   },
+   "types_of_finance_instruments": {
+      "": "Please Select",
+      "transferable securities": "Transferable Securities",
+      "cfd": "CFD",
+      "binary option": "Binary Option",
+      "other derivative products": "Other Derivative Products",
+      "none": "I am not familiar with any financial instruments"
+   },
+   "what_used_before": {
+      "broker services": "Broker Services that require independent investment decisions (such as investing in stocks or future contracts)",
+      "investment": "Investment advisory services / Portfolio Management"
+   },
+   "no_exp_list": {
+      "professional_qualification": "I hold a professional qualification in Finance/Economics or completed a course in CFDs/Forex Trading",
+      "worked": "I worked in a role relevant to trading derivatives",
+      "monitor": "I regularly monitor the financial market news",
+      "all": "All of the above",
+      "none": "None of the above"
+   },
+   "margin_test_list": {
+      "": "Please Select",
+      "30": "30 USD",
+      "1000": "1,000 USD",
+      "50,000": "50,000 USD"
+   },
+   "high_lev_test_list": {
+      "": "Please Select",
+      "largest": "It would lead to largest potential profit or loss",
+      "stopout": "It could lead to stop out and loss of invested capital",
+      "all": "Both of the above",
+      "none": "No impact on trading conditions"
+   },
+   "actions_test_list": {
+      "": "Please Select",
+      "takeprofit": "Take a profit",
+      "stoploss": "Place a stop loss",
+      "all": "Both of the above"
+   },
+   "forex_cfd_test_list": {
+      "": "Please Select",
+      "non_risky": "Non-Risky",
+      "speculative": "Speculative,Complex and Risky"
+   },
+   "last_transaction": {
+      "": "Please Select",
+      "less a week": "Less then a week ago",
+      "week and month": "Between a week and a month ago",
+      "month and half year": "Between a month and six month ago",
+      "less then year": "Between six month and a year ago",
+      "more then year": "More then a year ago",
+      "never": "Never"
+   },
+   "transaction_frequency": {
+      "": "Please Select",
+      "none": "None",
+      "less then 50": "Less then 50",
+      "50 and 500": "Between 50 and 500",
+      "more then 500": "Over then 500"
+   },
+   "average_volume": {
+      "": "Please Select",
+      "0": "0$",
+      "1-10": "1-10",
+      "11-100": "11-100",
+      "100-500": "100-500",
+      "more_than_500": "more than 500"
+   },
+   "leveraged_products": {
+      "": "Please Select",
+      "margin": "Margin trading in Forex",
+      "credits": "Credits and Loans",
+      "others": "Others"
+   },
+   "types_of_leverage": {
+      "": "Please Select",
+      "less 5": "Less then 5:1",
+      "5-20": "Between 5:1-20:1",
+      "20-100": "20:1-100:1",
+      "100-400": "100:1-400:1",
+      "more 400": "More then 400:1",
+      "N/A": "N/A"
+   },
+   "cfds_risk": {
+      "": "Please Select",
+      "all": "All of it. I am a risk taker",
+      "most": "Most of it. I am willing to assume substantial risk",
+      "some": "Some of it. I am willing to assume moderate risk",
+      "none": "None. I cannot accept losing any money from trading in CFDs"
+   },
+   "investment_length": {
+      "": "Please Select",
+      "day": "For day trading",
+      "less_than_year": "Less than a year",
+      "one_to_three": "Between 1 to 3 years",
+      "three_to_five": "Between 3 to 5 years",
+      "five_to_ten": "Between 5 to 10 years",
+      "above_ten": "More than 10 years"
+   },
+   "regular_financial": {
+      "": "Please Select",
+      "rent": "Rent",
+      "loan": "Loan",
+      "mortgage": "Mortgage Payments",
+      "other": "Other",
+      "no_regular": "No regular financial commitments"
+   },
+   "main_trading_purpose": {
+      "": "Please Select",
+      "intraday": "Intraday trading",
+      "short": "Short term investments",
+      "speculation": "Speculation",
+      "hedging": "Hedging of exposure to an underlying asset",
+      "capital": "Capital preservation",
+      "investment": "Investment portfolio diversification",
+      "buy_and_hold": "Buy and Hold Investment"
+   },
+   "documents": {
+      "EU": {
+         "http://fxgrow.com/pdf/ClientTermsandConditionsAgreement.pdf": "terms_and_conditions",
+         "http://fxgrow.com/pdf/Risk-Disclosure.pdf": "risk_disclosure",
+         "http://fxgrow.com/pdf/TradingRules.pdf": "trading_rules",
+         "https://fxgrow.com/en/legal-documents": "legal_documents"
+      },
+      "NonEU": {
+         "http://fxgrow.com/pdf/co/TermsAndConditions.pdf": "terms_and_conditions",
+         "http://fxgrow.com/pdf/co/Risk_Disclosure.pdf": "risk_disclosure",
+         "http://fxgrow.com/pdf/TradingRules.pdf": "trading_rules",
+         "http://fxgrow.com/pdf/Disclaimer-New.pdf": "disclaimer",
+         "https://fxgrow.com/en/legal-documents": "legal_documents"
+      }
+   },
+   "account_names": {
+      "ibs": "ECN",
+      "all": "ECN-Plus",
+      "vip": "ECN-VIP",
+      "promo": "Promotions"
+   },
+   "tradingcentral": {
+      "trial": 14
+   },
+   "analyst": {
+      "url": "https://site.recognia.com/fxgrow/serve.shtml?tkn=:",
+      "key": "v4hw8oi#$^#$r^@$21e!5@sa:",
+      "trial": 14
+   }
+}

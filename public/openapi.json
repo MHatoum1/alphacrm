@@ -1,0 +1,4148 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Secure Site API",
+        "description": "Secure Site endpoints",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://secure-api.alphatrust.ai",
+            "description": "Alpha Trust Server"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Authentication endpoint",
+                "description": "Single endpoint for all auth flows. The `action` field selects the flow.",
+                "operationId": "authPost",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AllAuthRequests"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK — returns JSON with token, 2FA challenge, or a message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AllAuth200"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request — validation failed / missing fields"
+                    },
+                    "401": {
+                        "description": "Unauthorized — wrong credentials / code"
+                    },
+                    "429": {
+                        "description": "Too Many Requests — throttled (e.g., resend or attempts)"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/api/accountsreport": {
+            "post": {
+                "tags": [
+                    "Accounts Report"
+                ],
+                "summary": "Retrieve accounts report",
+                "description": "Returns filtered accounts data in DataTables format.",
+                "operationId": "5341dccfffc1a053fae414871ce6e876",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_accountsreport__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Accounts report retrieved successfully",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_accountsreport__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid action or parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/admindashboard": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Admin Dashboard"
+                ],
+                "summary": "Admin dashboard actions",
+                "description": "Use `action` to select one of: stats, latestProfiles, latestTransactions",
+                "operationId": "admindashboardPost",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminDashboardRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response corresponding to the requested action",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminDashboard200"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid action or parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/admindetails": {
+            "post": {
+                "tags": [
+                    "Admin Details"
+                ],
+                "summary": "Perform admin‐level data operations",
+                "description": "Use the `action` field to select one of many detailed admin operations.",
+                "operationId": "162bf4191ce931851d3eec2d54e75d2c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_admindetails__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success — returns JSON payload for the chosen action"
+                    },
+                    "400": {
+                        "description": "Bad Request — missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/admindocuments": {
+            "post": {
+                "tags": [
+                    "Admin Documents"
+                ],
+                "summary": "Perform document-related admin actions",
+                "operationId": "b7f857925066f12e96a5665438a88158",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_admindocuments__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation succeeded, returns JSON payload"
+                    },
+                    "204": {
+                        "description": "No content (e.g. document deleted)"
+                    },
+                    "400": {
+                        "description": "Bad request or invalid action"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/adminleads": {
+            "post": {
+                "tags": [
+                    "Admin Leads"
+                ],
+                "summary": "Perform lead queries and assignments",
+                "description": "Use the `action` field to select operations: selecting leads, reports, or assigning them.",
+                "operationId": "801221e1c71eddaf0b6e564dd393decc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_adminleads__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful, returns JSON payload"
+                    },
+                    "400": {
+                        "description": "Bad request or invalid parameters"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/adminmarketing": {
+            "post": {
+                "tags": [
+                    "Admin Marketing"
+                ],
+                "summary": "Perform marketing actions (list, create, toggle, update, stats)",
+                "operationId": "ee10b16cb7fdd968501cf6347f92b23e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_adminmarketing__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK – returns JSON payload"
+                    },
+                    "400": {
+                        "description": "Bad Request – invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/adminprofiles": {
+            "post": {
+                "tags": [
+                    "Admin Profiles"
+                ],
+                "summary": "Perform profile operations",
+                "description": "Action is required. Allowed values: select, getProfile, previewDocument, downloadDocument, update, uploadDocument, approveDocument, rejectDocument, deleteDocument, searchIBs, add",
+                "operationId": "d76ad52ced5bc55d556eb52f8700fd82",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_adminprofiles__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK — returns JSON payload"
+                    },
+                    "400": {
+                        "description": "Bad Request — missing/invalid params"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/adminsettings": {
+            "post": {
+                "tags": [
+                    "Admin Settings"
+                ],
+                "summary": "Perform admin settings actions",
+                "description": "Actions: searchUsers, searchIBs, relationUpdate, list, details, reopen",
+                "operationId": "67bf9692344991ae2b74cc46635f1958",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_adminsettings__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request — missing or invalid parameters"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/admintransactions": {
+            "post": {
+                "tags": [
+                    "Admin Transactions"
+                ],
+                "summary": "Perform admin transaction actions",
+                "description": "Actions: select, selectWithdrawals, selectInternalTransfers, selectCreditCards, getDepositDetails, processDeposit, getWithdrawalDetails, processWithdrawal, getTransferDetails, completeTransfer, getCardDetails, modifyPurseStatus",
+                "operationId": "6710611c270af14485f181f1a3f6ea81",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_admintransactions__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request — missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/admintypes": {
+            "post": {
+                "tags": [
+                    "Admin Types"
+                ],
+                "summary": "Manage configuration Types",
+                "description": "Supported actions:\n     *     - **select**: list/paginate/filter Types  \n     *     - **selectOne**: fetch one by `id`  \n     *     - **getReportServers**: list all report servers  \n     *     - **getServersByType**: list servers for a given `typeId`  \n     *     - **add**: create new Type  \n     *     - **edit**: update existing Type  \n     *     - **delete**: remove a Type",
+                "operationId": "7ed5922b0674bee315919de9cddb1dab",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_admintypes__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid request or action"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/customreport": {
+            "post": {
+                "tags": [
+                    "Custom Report"
+                ],
+                "summary": "Fetch report header options or run a custom report",
+                "description": "\n     *     **get-header-report**: returns available filter values for the given `columns` array  \n     *     **custom-report**: returns DataTables-style report data for given `columns`, `category` and `col_type`",
+                "operationId": "fda51b6a3b818d291686dcb8b8c93de5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_customreport__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Header options or report data returned"
+                    },
+                    "400": {
+                        "description": "Invalid action or missing parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getAnalystLink": {
+            "post": {
+                "tags": [
+                    "Analyst Link"
+                ],
+                "summary": "Get secure Analyst URL for a given user",
+                "operationId": "74c91089320990aceb906683d346211e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_getanalystlink__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "URL returned",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_getanalystlink__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing user_id"
+                    },
+                    "402": {
+                        "description": "Trial expired"
+                    },
+                    "403": {
+                        "description": "User not verified"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/salesleads": {
+            "post": {
+                "tags": [
+                    "Sales Leads"
+                ],
+                "summary": "Perform sales-leads operations (list, get, assign, etc.)",
+                "operationId": "a95c75811a2a9adbc945d44511819992",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_salesleads__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "201": {
+                        "description": "Note created"
+                    },
+                    "204": {
+                        "description": "No content / saved"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/mt5accounts": {
+            "post": {
+                "tags": [
+                    "MT5 Accounts"
+                ],
+                "summary": "Retrieve MT5 account listings (paged or live online)",
+                "operationId": "eda73c42511c064b2100b67729a19a29",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_mt5accounts__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response with rows and total"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/partnersPreprocess": {
+            "post": {
+                "tags": [
+                    "Partners Preprocess"
+                ],
+                "summary": "Record IB partnership visit and campaign click, then optionally redirect",
+                "operationId": "1b20b8243b0ce57fe19ae1b2dfb444d4",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_partnerspreprocess__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK, redirect or noop"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/publicactivation": {
+            "post": {
+                "tags": [
+                    "Activation"
+                ],
+                "summary": "Send activation code or activate account",
+                "operationId": "0b1d4980e1c0f6883d443dc176591cc3",
+                "parameters": [
+                    {
+                        "name": "action",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "send_code",
+                                "activate"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_publicactivation__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/salesdemos": {
+            "post": {
+                "tags": [
+                    "Sales Demos"
+                ],
+                "summary": "List CRM demo accounts",
+                "description": "Returns paged demo accounts for display in a DataGrid",
+                "operationId": "salesDemosList",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_salesdemos__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Paged demo accounts",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_salesdemos__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Unknown action or bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/salesreport": {
+            "post": {
+                "tags": [
+                    "Sales Report"
+                ],
+                "summary": "Generate a filtered sales report",
+                "description": "Returns totals, leads counts and deposit breakdown for the logged-in sales user between two dates.",
+                "operationId": "filterSalesReport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_salesreport__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sales report data",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_salesreport__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Unknown action or bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/tradingCentralStatus": {
+            "post": {
+                "tags": [
+                    "Trading Central"
+                ],
+                "summary": "Retrieve Trading Central access status for a given user",
+                "description": "Returns whether the user is verified, has deposited, and their Trading Central access flag.",
+                "operationId": "getTradingCentralStatus",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_tradingcentralstatus__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User Trading Central status retrieved successfully",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_tradingcentralstatus__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid user_id"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/userTransactions": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Retrieve the latest user deposit and withdrawal transactions",
+                "operationId": "getUserTransactions",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_usertransactions__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "List of transactions",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_usertransactions__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/accountdetails": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "summary": "Retrieve various details for a trading account",
+                "description": "Depending on the `action` field, returns account metadata, transactions, open or historical trades, or performs password/demo-fund operations.",
+                "operationId": "userAccountDetails",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_accountdetails__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_accountdetails__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/useraccounts": {
+            "post": {
+                "tags": [
+                    "User Account"
+                ],
+                "summary": "Fetch templates, existing accounts, options or create a new account for a user",
+                "operationId": "userAccounts",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_useraccounts__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response – shape varies by action",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_useraccounts__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/useractivation": {
+            "post": {
+                "tags": [
+                    "User Activation"
+                ],
+                "summary": "Resend activation code or activate a user profile",
+                "operationId": "userActivation",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_useractivation__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_useractivation__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "403": {
+                        "description": "Forbidden or invalid activation code"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/userdeposits": {
+            "post": {
+                "tags": [
+                    "User Deposits"
+                ],
+                "summary": "Retrieve deposit options or initiate a deposit via Neteller, Skrill, or bank wire",
+                "operationId": "userDeposits",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userdeposits__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/messenger": {
+            "get": {
+                "tags": [
+                    "Messenger"
+                ],
+                "summary": "Get notification count, list or close all notifications for a user",
+                "operationId": "getUserMessages",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "action",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "count",
+                                "list",
+                                "close_notification"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Messenger"
+                ],
+                "summary": "Submit a phone‐callback request",
+                "operationId": "postUserMessengerCallback",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_messenger__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Callback request forwarded"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/userpartnerlinks": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Retrieve or add partner links for a user",
+                "operationId": "manageUserPartnerLinks",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userpartnerlinks__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    }
+                }
+            }
+        },
+        "/api/userpartnerreferrals": {
+            "post": {
+                "tags": [
+                    "Partners"
+                ],
+                "summary": "Retrieve referred users or their accounts for a partner",
+                "operationId": "manageUserPartnerReferrals",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userpartnerreferrals__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    }
+                }
+            }
+        },
+        "/api/userprofiles": {
+            "post": {
+                "tags": [
+                    "User Profile"
+                ],
+                "summary": "Retrieve the full user profile",
+                "operationId": "getUserProfile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userprofiles__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User profile object",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_userprofiles__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/userrefer": {
+            "post": {
+                "tags": [
+                    "Referral"
+                ],
+                "summary": "Get or generate your Refer-a-Friend link and stats",
+                "operationId": "userRefer",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userrefer__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Current referral link & stats",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_userrefer__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid user_id/action"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/usertransfer": {
+            "post": {
+                "tags": [
+                    "User Transfer"
+                ],
+                "summary": "List accounts or move funds internally between them",
+                "operationId": "userTransfer",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_usertransfer__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_usertransfer__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/userwallets": {
+            "post": {
+                "tags": [
+                    "Wallets"
+                ],
+                "summary": "Fetch user wallets or last transactions",
+                "operationId": "userWallets",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userwallets__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resp200__POST__api_userwallets__application_x_www_form_urlencoded"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/userwithdraw": {
+            "post": {
+                "tags": [
+                    "User Withdrawals"
+                ],
+                "summary": "Retrieve withdrawal metadata or submit a withdrawal request",
+                "operationId": "userWithdraw",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userwithdraw__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/userwithdrawals": {
+            "post": {
+                "tags": [
+                    "User Withdrawals"
+                ],
+                "summary": "Return the list of available withdrawal methods for the user",
+                "operationId": "getWithdrawOptions",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReqBody__POST__api_userwithdrawals__application_x_www_form_urlencoded"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "List of withdrawal options"
+                    },
+                    "400": {
+                        "description": "Missing or invalid parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AdminDashboardRequest": {
+                "type": "object",
+                "required": [
+                    "action",
+                    "admin_id"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "description": "Which dashboard data to retrieve",
+                        "enum": [
+                            "stats",
+                            "latestProfiles",
+                            "latestTransactions"
+                        ]
+                    },
+                    "admin_id": {
+                        "type": "integer",
+                        "description": "Admin user ID"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Max items for latestProfiles/latestTransactions",
+                        "example": 10
+                    }
+                }
+            },
+            "AdminDashboardStatsResponse": {
+                "type": "object",
+                "title": "AdminDashboardStatsResponse",
+                "properties": {
+                    "totalUsers": {
+                        "type": "integer"
+                    },
+                    "activeUsers": {
+                        "type": "integer"
+                    },
+                    "pendingVerifications": {
+                        "type": "integer"
+                    },
+                    "depositsToday": {
+                        "type": "number"
+                    },
+                    "withdrawalsToday": {
+                        "type": "number"
+                    }
+                }
+            },
+            "AdminDashboardLatestProfilesResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            },
+            "AdminDashboardLatestTransactionsResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "userId": {
+                            "type": "integer"
+                        },
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "deposit",
+                                "withdrawal",
+                                "transfer"
+                            ]
+                        },
+                        "amount": {
+                            "type": "number"
+                        },
+                        "currency": {
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            },
+            "AdminDashboard200": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "description": "Stats payload (metrics object; keys vary by implementation)"
+                    },
+                    {
+                        "type": "array",
+                        "description": "Latest profiles",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "type": "array",
+                        "description": "Latest transactions",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                ]
+            },
+            "AdminGroupsSelectRequest": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "select"
+                        ]
+                    },
+                    "draw": {
+                        "type": "integer"
+                    },
+                    "start": {
+                        "type": "integer"
+                    },
+                    "length": {
+                        "type": "integer"
+                    },
+                    "search": {
+                        "description": "DataTables search object",
+                        "type": "object"
+                    },
+                    "order": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "columns": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsSelectOneRequest": {
+                "required": [
+                    "action",
+                    "id"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "selectOne"
+                        ]
+                    },
+                    "id": {
+                        "description": "Group ID",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsGetByConfigRequest": {
+                "required": [
+                    "action",
+                    "configId"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getByConfig"
+                        ]
+                    },
+                    "configId": {
+                        "description": "Configuration ID",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsGetByServerRequest": {
+                "required": [
+                    "action",
+                    "server_name"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getByServer"
+                        ]
+                    },
+                    "server_name": {
+                        "description": "Server name to filter groups",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsAddRequest": {
+                "required": [
+                    "action",
+                    "grp",
+                    "currency",
+                    "configId",
+                    "platform"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "add"
+                        ]
+                    },
+                    "grp": {
+                        "description": "Group name",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string"
+                    },
+                    "configId": {
+                        "description": "Configuration ID",
+                        "type": "integer"
+                    },
+                    "liveglobal": {
+                        "description": "Live global flag",
+                        "type": "string"
+                    },
+                    "platform": {
+                        "description": "Platform name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsEditRequest": {
+                "required": [
+                    "action",
+                    "id"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "edit"
+                        ]
+                    },
+                    "id": {
+                        "description": "Group ID",
+                        "type": "integer"
+                    },
+                    "grp": {
+                        "description": "Group name",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string"
+                    },
+                    "configId": {
+                        "description": "Configuration ID",
+                        "type": "integer"
+                    },
+                    "liveglobal": {
+                        "description": "Live global flag",
+                        "type": "string"
+                    },
+                    "platform": {
+                        "description": "Platform name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AdminGroupsDeleteRequest": {
+                "required": [
+                    "action",
+                    "id"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "delete"
+                        ]
+                    },
+                    "id": {
+                        "description": "Group ID",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthLoginRequest": {
+                "required": [
+                    "action",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "login"
+                        ]
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "smscode": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AuthRegisterRequest": {
+                "required": [
+                    "action",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "password",
+                    "country",
+                    "phone_code",
+                    "phone_number"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "register"
+                        ]
+                    },
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "phone_code": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "smscode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "campaign": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "pid": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "externalRegister": {
+                        "type": "boolean",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AuthRegisterIBRequest": {
+                "required": [
+                    "action",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "password",
+                    "country",
+                    "phone_code",
+                    "phone_number"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "registerIB"
+                        ]
+                    },
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "phone_code": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "smscode": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "campaign": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "pid": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "partnerid": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "partner_account_type": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "client_personal_relation": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "ib_experience": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nbr_clients": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "client_depositsent_personal_relation": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AuthRequestPasswordResetRequest": {
+                "required": [
+                    "action",
+                    "email"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "requestPasswordReset"
+                        ]
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthResetPasswordRequest": {
+                "required": [
+                    "action",
+                    "token",
+                    "password"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "resetPassword"
+                        ]
+                    },
+                    "token": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthVerifyLoginCodeRequest": {
+                "required": [
+                    "action",
+                    "challengeToken",
+                    "code"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "verifyLoginCode"
+                        ]
+                    },
+                    "challengeToken": {
+                        "type": "string",
+                        "description": "Signed, stateless challenge token"
+                    },
+                    "code": {
+                        "type": "string",
+                        "description": "6-digit verification code"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthResendLoginCodeRequest": {
+                "required": [
+                    "action",
+                    "challengeToken"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "resendLoginCode"
+                        ]
+                    },
+                    "challengeToken": {
+                        "type": "string",
+                        "description": "Signed, stateless challenge token to be refreshed"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthTwoFAChallengeResponse": {
+                "required": [
+                    "twofa",
+                    "challengeToken",
+                    "expiresAt"
+                ],
+                "properties": {
+                    "twofa": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "challengeToken": {
+                        "type": "string"
+                    },
+                    "expiresAt": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Unix timestamp"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthLoginSuccessResponse": {
+                "required": [
+                    "userID",
+                    "uid",
+                    "type",
+                    "acl",
+                    "name",
+                    "email",
+                    "token",
+                    "redirect"
+                ],
+                "properties": {
+                    "userID": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "acl": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "token": {
+                        "type": "string"
+                    },
+                    "noneuropean": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "affiliate": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "redirect": {
+                        "type": "string",
+                        "example": "/"
+                    }
+                },
+                "type": "object"
+            },
+            "AuthMessageResponse": {
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "redirect": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AllAuthRequests": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthLoginRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthRegisterRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthRegisterIBRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthRequestPasswordResetRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthResetPasswordRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthVerifyLoginCodeRequest"
+                    },
+                    {
+                        "$ref": "#/components/schemas/AuthResendLoginCodeRequest"
+                    }
+                ]
+            },
+            "AllAuth200": {
+                "oneOf": [
+                    {
+                        "description": "2FA challenge after successful credential check",
+                        "type": "object",
+                        "properties": {
+                            "twofa": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "challengeToken": {
+                                "type": "string",
+                                "example": "eyJ..."
+                            },
+                            "expiresAt": {
+                                "type": "integer",
+                                "description": "Unix epoch seconds",
+                                "example": 1735756800
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "2FA required."
+                            }
+                        },
+                        "required": [
+                            "twofa",
+                            "challengeToken",
+                            "expiresAt"
+                        ]
+                    },
+                    {
+                        "description": "Successful login/register/verify result with token and user payload",
+                        "type": "object",
+                        "properties": {
+                            "userID": {
+                                "type": "integer",
+                                "example": 123
+                            },
+                            "uid": {
+                                "type": "string",
+                                "example": "b4a8c6..."
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "secure"
+                            },
+                            "acl": {
+                                "type": "string",
+                                "example": "secure"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Jane Doe"
+                            },
+                            "email": {
+                                "type": "string",
+                                "format": "email",
+                                "example": "jane@example.com"
+                            },
+                            "token": {
+                                "type": "string",
+                                "example": "jwt-token-here"
+                            },
+                            "noneuropean": {
+                                "type": "string",
+                                "nullable": true,
+                                "example": "1"
+                            },
+                            "affiliate": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "redirect": {
+                                "type": "string",
+                                "example": "/"
+                            }
+                        },
+                        "required": [
+                            "token"
+                        ]
+                    },
+                    {
+                        "description": "Generic success message (e.g., password reset/request)",
+                        "type": "object",
+                        "properties": {
+                            "message": {
+                                "type": "string",
+                                "example": "The password has been changed successfully."
+                            },
+                            "redirect": {
+                                "type": "string",
+                                "nullable": true,
+                                "example": "/"
+                            }
+                        },
+                        "required": [
+                            "message"
+                        ]
+                    }
+                ]
+            },
+            "ReqBody__POST__api_accountsreport__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Must be 'report-accounts'",
+                        "type": "string",
+                        "enum": [
+                            "report-accounts"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Admin user ID",
+                        "type": "integer"
+                    },
+                    "eu_noneu": {
+                        "description": "Filter: 'EU' or 'Noneu'",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code (e.g. USD)",
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "Country code",
+                        "type": "string"
+                    },
+                    "date_from": {
+                        "description": "Start date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "date_to": {
+                        "description": "End date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "min": {
+                        "description": "Minimum balance",
+                        "type": "number"
+                    },
+                    "max": {
+                        "description": "Maximum balance",
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_accountsreport__application_x_www_form_urlencoded": {
+                "properties": {
+                    "rows": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "login": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "format": "email"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "country": {
+                                    "type": "string"
+                                },
+                                "group": {
+                                    "type": "string"
+                                },
+                                "currency": {
+                                    "type": "string"
+                                },
+                                "balance": {
+                                    "type": "number",
+                                    "format": "float"
+                                },
+                                "campaign": {
+                                    "type": "string"
+                                },
+                                "partnership": {
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "sales": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "recordsTotal": {
+                        "type": "integer"
+                    },
+                    "recordsFiltered": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_admindetails__application_x_www_form_urlencoded": {
+                "required": [
+                    "action",
+                    "admin_id"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which admin action to invoke",
+                        "type": "string",
+                        "enum": [
+                            "selectDetailedTransactions",
+                            "selectAccounts",
+                            "selectDetailedPurses",
+                            "selectUserActionsLog",
+                            "selectUserEmails",
+                            "selectUserMessages",
+                            "saveUserStatuses",
+                            "getProfileOverview",
+                            "getUserStatuses",
+                            "downloadKycPdf",
+                            "add_lead_status",
+                            "updateUserPassword",
+                            "resetSecurePin",
+                            "getUserAccesses",
+                            "updateUserAccesses",
+                            "getReferAFriend",
+                            "toggleAccountHidden",
+                            "toggleAccountEu",
+                            "updateAccountLimits",
+                            "getAccountLimits",
+                            "fetchPaymentInit",
+                            "startPayment",
+                            "createnote",
+                            "updatenote",
+                            "deletenote"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Your admin user ID",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "Target user ID",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "Generic profile or note ID",
+                        "type": "integer"
+                    },
+                    "url_part": {
+                        "description": "Optional URL segment for filtering/paging",
+                        "type": "string"
+                    },
+                    "to": {
+                        "type": "string"
+                    },
+                    "operation": {
+                        "type": "string"
+                    },
+                    "currency_target": {
+                        "type": "string"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "method": {
+                        "type": "string",
+                        "enum": [
+                            "deposit",
+                            "withdraw"
+                        ]
+                    },
+                    "draw": {
+                        "type": "integer"
+                    },
+                    "start": {
+                        "type": "integer"
+                    },
+                    "length": {
+                        "type": "integer"
+                    },
+                    "search": {
+                        "type": "object"
+                    },
+                    "order": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "columns": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "note": {
+                        "type": "string"
+                    },
+                    "note_id": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "description": "Sub‐type for notes",
+                        "type": "string"
+                    },
+                    "future_date": {
+                        "description": "Optional scheduled date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "lead_status": {
+                        "type": "string"
+                    },
+                    "limit": {
+                        "type": "integer"
+                    },
+                    "tradingCentral": {
+                        "type": "boolean"
+                    },
+                    "backofficeAccess": {
+                        "type": "boolean"
+                    },
+                    "acl": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_admindocuments__application_x_www_form_urlencoded": {
+                "required": [
+                    "action",
+                    "admin_id"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which document operation to perform",
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "info",
+                            "doc_delete",
+                            "doc_aprove",
+                            "doc_decline",
+                            "doc_expiration",
+                            "but_translate"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Admin user ID",
+                        "type": "integer"
+                    },
+                    "url_part": {
+                        "description": "Optional paging/filter segment",
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "description": "Target user ID",
+                        "type": "integer"
+                    },
+                    "file_name": {
+                        "description": "Document file name",
+                        "type": "string"
+                    },
+                    "doc_expiration": {
+                        "description": "New expiration date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "translate": {
+                        "description": "Translation text",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_adminleads__application_x_www_form_urlencoded": {
+                "required": [
+                    "action",
+                    "admin_id"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which admin leads operation to perform",
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "select-leads",
+                            "reverted-clients",
+                            "cold-leads",
+                            "demo-leads",
+                            "deposit-report",
+                            "redeposit-report",
+                            "assign-client-to-sales",
+                            "assign-leads-to-sales",
+                            "get-sales-user",
+                            "dropdowns"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Admin user ID",
+                        "type": "integer"
+                    },
+                    "date_from": {
+                        "description": "Start date YYYY-MM-DD",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "date_to": {
+                        "description": "End date YYYY-MM-DD",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "search": {
+                        "description": "DataTables search object",
+                        "type": "object"
+                    },
+                    "order": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "start": {
+                        "type": "integer"
+                    },
+                    "length": {
+                        "type": "integer"
+                    },
+                    "url_part": {
+                        "description": "Optional segment: 'notified', etc.",
+                        "type": "string"
+                    },
+                    "campaign": {
+                        "description": "Campaign name",
+                        "type": "string"
+                    },
+                    "users_id": {
+                        "description": "List of user IDs to assign/unassign",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "sales_id": {
+                        "description": "Sales user ID to assign to (or omit to unassign)",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_adminmarketing__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which marketing operation to invoke",
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "select-archived",
+                            "createCampaign",
+                            "toggleCampaign",
+                            "updateCampaign",
+                            "getCampaignStats",
+                            "getReferToFriendStat"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Admin user ID",
+                        "type": "integer"
+                    },
+                    "draw": {
+                        "type": "integer"
+                    },
+                    "start": {
+                        "type": "integer"
+                    },
+                    "length": {
+                        "type": "integer"
+                    },
+                    "search": {
+                        "description": "DataTables search",
+                        "type": "object"
+                    },
+                    "code": {
+                        "description": "Campaign code",
+                        "type": "string"
+                    },
+                    "link": {
+                        "description": "Target link",
+                        "type": "string"
+                    },
+                    "campaignType": {
+                        "description": "Campaign type",
+                        "type": "string"
+                    },
+                    "channelPlacement": {
+                        "description": "Placement channel",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Campaign ID",
+                        "type": "integer"
+                    },
+                    "enabled": {
+                        "description": "Enable flag",
+                        "type": "boolean"
+                    },
+                    "script": {
+                        "description": "Campaign script",
+                        "type": "string"
+                    },
+                    "campaign_id": {
+                        "description": "Campaign ID for stats",
+                        "type": "integer"
+                    },
+                    "from": {
+                        "description": "Stats start date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "to": {
+                        "description": "Stats end date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "country": {
+                        "description": "Filter by country codes",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_adminprofiles__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which profile operation to invoke",
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "getProfile",
+                            "previewDocument",
+                            "downloadDocument",
+                            "update",
+                            "uploadDocument",
+                            "approveDocument",
+                            "rejectDocument",
+                            "deleteDocument",
+                            "searchIBs",
+                            "add"
+                        ]
+                    },
+                    "admin_id": {
+                        "description": "Admin user ID",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "Profile or file ID",
+                        "type": "integer"
+                    },
+                    "url_part": {
+                        "description": "Optional sub‐resource indicator",
+                        "type": "string"
+                    },
+                    "search": {
+                        "description": "DataTables search object",
+                        "type": "object"
+                    },
+                    "filename": {
+                        "description": "Filename for preview/download",
+                        "type": "string"
+                    },
+                    "update": {
+                        "description": "Section to update",
+                        "type": "string"
+                    },
+                    "file_id": {
+                        "description": "Document record ID",
+                        "type": "integer"
+                    },
+                    "q": {
+                        "description": "Search query for IBs",
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "has_ib": {
+                        "type": "boolean"
+                    },
+                    "ib_id": {
+                        "type": "integer"
+                    },
+                    "login": {
+                        "description": "MT5 login",
+                        "type": "string"
+                    },
+                    "agreements": {
+                        "description": "Array of agreement keys",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_adminsettings__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which adminsettings operation to invoke",
+                        "type": "string",
+                        "enum": [
+                            "searchUsers",
+                            "searchIBs",
+                            "relationUpdate",
+                            "list",
+                            "details",
+                            "reopen"
+                        ]
+                    },
+                    "q": {
+                        "description": "Search query",
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "description": "Client user ID",
+                        "type": "integer"
+                    },
+                    "ib_id": {
+                        "description": "IB user ID",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number for list",
+                        "type": "integer"
+                    },
+                    "rows": {
+                        "description": "Rows per page",
+                        "type": "integer"
+                    },
+                    "sort": {
+                        "description": "Sort field",
+                        "type": "string"
+                    },
+                    "order": {
+                        "description": "Sort order (asc/desc)",
+                        "type": "string"
+                    },
+                    "task": {
+                        "description": "Queue task filter",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Record ID for details",
+                        "type": "integer"
+                    },
+                    "reopen": {
+                        "description": "Task ID to reopen",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_admintransactions__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which operation to perform",
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "selectWithdrawals",
+                            "selectInternalTransfers",
+                            "selectCreditCards",
+                            "getDepositDetails",
+                            "processDeposit",
+                            "getWithdrawalDetails",
+                            "processWithdrawal",
+                            "getTransferDetails",
+                            "completeTransfer",
+                            "getCardDetails",
+                            "modifyPurseStatus"
+                        ]
+                    },
+                    "url_part": {
+                        "description": "DataTables URL part for listing",
+                        "type": "string"
+                    },
+                    "transaction_id": {
+                        "description": "Transaction ID",
+                        "type": "integer"
+                    },
+                    "amount_deposit": {
+                        "description": "Amount for deposit processing",
+                        "type": "number"
+                    },
+                    "amount_to_withdraw": {
+                        "description": "Amount for withdrawal processing",
+                        "type": "number"
+                    },
+                    "amount": {
+                        "description": "General amount parameter",
+                        "type": "number"
+                    },
+                    "tp_comment": {
+                        "description": "Technical provider comment",
+                        "type": "string"
+                    },
+                    "reason": {
+                        "description": "Reason for action",
+                        "type": "string"
+                    },
+                    "approve": {
+                        "description": "Approve flag",
+                        "type": "boolean"
+                    },
+                    "decline": {
+                        "description": "Decline flag",
+                        "type": "boolean"
+                    },
+                    "close": {
+                        "description": "Close flag",
+                        "type": "boolean"
+                    },
+                    "back2processing": {
+                        "description": "Requeue for processing",
+                        "type": "boolean"
+                    },
+                    "uid": {
+                        "description": "Purse UID for card operations",
+                        "type": "integer"
+                    },
+                    "purse_id": {
+                        "description": "Purse ID for status modification",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_admintypes__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "select",
+                            "selectOne",
+                            "getReportServers",
+                            "getServersByType",
+                            "add",
+                            "edit",
+                            "delete"
+                        ]
+                    },
+                    "draw": {
+                        "type": "integer"
+                    },
+                    "start": {
+                        "type": "integer"
+                    },
+                    "length": {
+                        "type": "integer"
+                    },
+                    "search": {
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "order": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "column": {
+                                    "type": "integer"
+                                },
+                                "dir": {
+                                    "type": "string",
+                                    "enum": [
+                                        "asc",
+                                        "desc"
+                                    ]
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "id": {
+                        "type": "integer"
+                    },
+                    "typeId": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "shortval": {
+                        "type": "string"
+                    },
+                    "initial": {
+                        "type": "integer"
+                    },
+                    "spread": {
+                        "type": "string"
+                    },
+                    "commission": {
+                        "type": "integer"
+                    },
+                    "leverage": {
+                        "type": "integer"
+                    },
+                    "hosting": {
+                        "type": "integer"
+                    },
+                    "strategy": {
+                        "type": "string"
+                    },
+                    "iseuropean": {
+                        "type": "boolean"
+                    },
+                    "islive": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "server": {
+                        "type": "string"
+                    },
+                    "reportserver": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_customreport__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "get-header-report",
+                            "custom-report"
+                        ]
+                    },
+                    "columns": {
+                        "description": "List of column keys to include",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "category": {
+                        "description": "Report category (only for custom-report)",
+                        "type": "string"
+                    },
+                    "col_type": {
+                        "description": "Column type (only for custom-report)",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_getanalystlink__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_getanalystlink__application_x_www_form_urlencoded": {
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "https://analyst.example.com/abc123"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_salesleads__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Which operation to run",
+                        "type": "string",
+                        "example": "list"
+                    },
+                    "user_id": {
+                        "description": "Sales user ID",
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "id": {
+                        "description": "Lead or note ID",
+                        "type": "integer",
+                        "example": 101
+                    },
+                    "note": {
+                        "description": "Note text",
+                        "type": "string",
+                        "example": "Followed up"
+                    },
+                    "future_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-09-01"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_mt5accounts__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "Admin user ID for ACL checks",
+                        "type": "integer"
+                    },
+                    "action": {
+                        "description": "mtaccounts = paged legacy list; list_mt5 = live server snapshot",
+                        "type": "string",
+                        "example": "mtaccounts"
+                    },
+                    "page": {
+                        "description": "Page number, 1-based",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "rows": {
+                        "description": "Page size",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "sort": {
+                        "description": "Sort column",
+                        "type": "string",
+                        "example": "Login"
+                    },
+                    "order": {
+                        "description": "asc or desc",
+                        "type": "string",
+                        "example": "desc"
+                    },
+                    "srch": {
+                        "description": "Field to search (legacy)",
+                        "type": "string",
+                        "example": "all"
+                    },
+                    "srchv": {
+                        "description": "Search value (legacy)",
+                        "type": "string",
+                        "example": "1001"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_partnerspreprocess__application_x_www_form_urlencoded": {
+                "properties": {
+                    "pid": {
+                        "description": "IB partnership hash",
+                        "type": "string"
+                    },
+                    "cid": {
+                        "description": "Campaign ID",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "Optional admin user ID for logging",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_publicactivation__application_x_www_form_urlencoded": {
+                "properties": {
+                    "action": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email to send activation code to",
+                        "type": "string"
+                    },
+                    "acode": {
+                        "description": "Activation code SHA1(uid)",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_salesdemos__application_x_www_form_urlencoded": {
+                "required": [
+                    "action"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Must be 'list'",
+                        "type": "string",
+                        "enum": [
+                            "list"
+                        ]
+                    },
+                    "date_from": {
+                        "description": "Filter start date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "date_to": {
+                        "description": "Filter end date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "draw": {
+                        "description": "DataTables draw counter",
+                        "type": "integer"
+                    },
+                    "start": {
+                        "description": "DataTables paging start index",
+                        "type": "integer"
+                    },
+                    "length": {
+                        "description": "DataTables page length",
+                        "type": "integer"
+                    },
+                    "search": {
+                        "description": "DataTables search object",
+                        "properties": {
+                            "value": {
+                                "description": "Search term",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_salesdemos__application_x_www_form_urlencoded": {
+                "properties": {
+                    "data": {
+                        "description": "List of demo accounts",
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "recordsTotal": {
+                        "description": "Total records before filtering",
+                        "type": "integer"
+                    },
+                    "recordsFiltered": {
+                        "description": "Total records after filtering",
+                        "type": "integer"
+                    },
+                    "draw": {
+                        "description": "Echoed draw counter",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_salesreport__application_x_www_form_urlencoded": {
+                "required": [
+                    "action",
+                    "from",
+                    "to"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "Must be `filter_sales_report`",
+                        "type": "string",
+                        "example": "filter_sales_report"
+                    },
+                    "from": {
+                        "description": "Start date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-01-01"
+                    },
+                    "to": {
+                        "description": "End date (YYYY-MM-DD)",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2025-12-31"
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_salesreport__application_x_www_form_urlencoded": {
+                "properties": {
+                    "sale_name": {
+                        "description": "Name of the sales user",
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "Total leads in period",
+                        "type": "integer"
+                    },
+                    "verified_leads": {
+                        "description": "Number of verified leads",
+                        "type": "integer"
+                    },
+                    "activated_leads": {
+                        "description": "Number of activated leads",
+                        "type": "integer"
+                    },
+                    "USDDetail": {
+                        "description": "New USD deposits formatted",
+                        "type": "string"
+                    },
+                    "checksUSDDetail": {
+                        "description": "New USD check deposits formatted",
+                        "type": "string"
+                    },
+                    "LBPDetail": {
+                        "description": "New LBP deposits formatted",
+                        "type": "string"
+                    },
+                    "USD": {
+                        "description": "Re-deposits USD formatted",
+                        "type": "string"
+                    },
+                    "checksUSD": {
+                        "description": "Re-deposits USD check formatted",
+                        "type": "string"
+                    },
+                    "LBP": {
+                        "description": "Re-deposits LBP formatted",
+                        "type": "string"
+                    },
+                    "total_usd": {
+                        "description": "Total USD (new + re) formatted",
+                        "type": "string"
+                    },
+                    "total_chk_usd": {
+                        "description": "Total USD checks formatted",
+                        "type": "string"
+                    },
+                    "total_lbp": {
+                        "description": "Total LBP formatted",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_tradingcentralstatus__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "The internal user ID",
+                        "type": "integer",
+                        "example": 123
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_tradingcentralstatus__application_x_www_form_urlencoded": {
+                "properties": {
+                    "verified": {
+                        "description": "Whether the user is verified",
+                        "type": "boolean"
+                    },
+                    "deposited": {
+                        "description": "Whether the user has made a deposit",
+                        "type": "boolean"
+                    },
+                    "accessFlag": {
+                        "description": "Trading Central access flag",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_usertransactions__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "action": {
+                        "description": "Only `getUserTransactions` is supported",
+                        "type": "string",
+                        "enum": [
+                            "getUserTransactions"
+                        ],
+                        "example": "getUserTransactions"
+                    },
+                    "limit": {
+                        "description": "Maximum number of records to return",
+                        "type": "integer",
+                        "example": 5
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_usertransactions__application_x_www_form_urlencoded": {
+                "type": "array",
+                "items": {
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 123
+                        },
+                        "method": {
+                            "type": "string",
+                            "example": "Skrill"
+                        },
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "deposit",
+                                "withdraw"
+                            ],
+                            "example": "deposit"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "format": "float",
+                            "example": 100.5
+                        },
+                        "currency": {
+                            "type": "string",
+                            "example": "USD"
+                        },
+                        "status": {
+                            "type": "string",
+                            "example": "completed"
+                        },
+                        "processed": {
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "created": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2025-08-01T12:34:56Z"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "ReqBody__POST__api_accountdetails__application_x_www_form_urlencoded": {
+                "required": [
+                    "action",
+                    "uid"
+                ],
+                "properties": {
+                    "action": {
+                        "description": "One of: getDetails, getTransactions, getOpenTrades, getHistoryTrades, setPassword, fundDemoAccount",
+                        "type": "string",
+                        "example": "getDetails"
+                    },
+                    "uid": {
+                        "description": "The trading account UID",
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "user_id": {
+                        "description": "Required when action is setPassword or fundDemoAccount",
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "new_password": {
+                        "description": "New password (for setPassword)",
+                        "type": "string",
+                        "example": "s3cr3t!"
+                    },
+                    "amount": {
+                        "description": "Amount to fund demo account (for fundDemoAccount)",
+                        "type": "number",
+                        "format": "float",
+                        "example": 5000
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_accountdetails__application_x_www_form_urlencoded": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "uid": {
+                                "type": "integer"
+                            },
+                            "login": {
+                                "type": "integer"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "platform": {
+                                "type": "string"
+                            },
+                            "isGlobal": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "balance": {
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "currency": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "message": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ReqBody__POST__api_useraccounts__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "The internal user ID",
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "description": "Which operation to perform",
+                        "type": "string",
+                        "enum": [
+                            "getTemplates",
+                            "getAccounts",
+                            "getCreateOptions",
+                            "createAccount"
+                        ]
+                    },
+                    "type": {
+                        "description": "‘live’ or ‘demo’",
+                        "type": "string",
+                        "example": "live"
+                    },
+                    "shortval": {
+                        "description": "short product code",
+                        "type": "string",
+                        "example": "ibs"
+                    },
+                    "className": {
+                        "description": "class name",
+                        "type": "string",
+                        "example": "ECN-V-MT5"
+                    },
+                    "platform": {
+                        "description": "‘mt5’ or ‘mt4’",
+                        "type": "string",
+                        "example": "mt5"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "leverage": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "initial": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 100
+                    },
+                    "spread": {
+                        "type": "string",
+                        "example": "1.2"
+                    },
+                    "commission": {
+                        "type": "string",
+                        "example": "0.03"
+                    },
+                    "hosting": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "strategy": {
+                        "type": "string",
+                        "example": "standard"
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_useraccounts__application_x_www_form_urlencoded": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "live": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            },
+                            "demo": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "options": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "result": {
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ReqBody__POST__api_useractivation__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "The ID of the user to operate on",
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "action": {
+                        "description": "send_code → resend the activation code; activate → verify & activate the profile",
+                        "type": "string",
+                        "enum": [
+                            "send_code",
+                            "activate"
+                        ]
+                    },
+                    "acode": {
+                        "description": "sha1(user.uid) activation code (required when action=activate)",
+                        "type": "string",
+                        "example": "a1b2c3d4e5f6..."
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_useractivation__application_x_www_form_urlencoded": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "activation_code_sent"
+                    },
+                    "redirect": {
+                        "type": "string",
+                        "example": "userprofile/personal"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userdeposits__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "description": "ID of the user",
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "action": {
+                        "description": "Which operation to perform",
+                        "type": "string",
+                        "enum": [
+                            "getDepositOptions",
+                            "netellerInit",
+                            "skrillInit",
+                            "bankWireMeta",
+                            "banktransfer"
+                        ]
+                    },
+                    "to": {
+                        "description": "Payment method code (netellerInit, skrillInit)",
+                        "type": "string",
+                        "example": "NETELLER"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 150.75
+                    },
+                    "currency_target": {
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "email": {
+                        "description": "Payer email for netellerInit",
+                        "type": "string",
+                        "example": "user@example.com"
+                    },
+                    "pay_from_email": {
+                        "description": "Payer email for skrillInit",
+                        "type": "string",
+                        "example": "user@example.com"
+                    },
+                    "bank": {
+                        "description": "Bank name for banktransfer",
+                        "type": "string",
+                        "example": "USD Bank Of Cyprus"
+                    },
+                    "purse": {
+                        "description": "Stored bank account UID (optional)",
+                        "type": "string",
+                        "example": "PURSE123"
+                    },
+                    "client_bank": {
+                        "description": "Custom bank details: name, IBAN, etc.",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_messenger__application_x_www_form_urlencoded": {
+                "required": [
+                    "full_name",
+                    "email",
+                    "country_code",
+                    "phone",
+                    "country",
+                    "validation"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "callback"
+                        ]
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "country_code": {
+                        "type": "string",
+                        "example": "+1"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "ISO country code",
+                        "type": "string"
+                    },
+                    "validation": {
+                        "type": "string"
+                    },
+                    "Besttimetocall": {
+                        "description": "Optional preferred time",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userpartnerlinks__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getLinks",
+                            "addLink"
+                        ]
+                    },
+                    "campaign": {
+                        "description": "Campaign identifier (for addLink)",
+                        "type": "string"
+                    },
+                    "bannerLink": {
+                        "description": "Custom banner link (optional)",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userpartnerreferrals__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getReferrals",
+                            "getAccounts"
+                        ]
+                    },
+                    "page": {
+                        "description": "Page number for referrals",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "perPage": {
+                        "description": "Number of referrals per page",
+                        "type": "integer",
+                        "example": 50
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userprofiles__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getProfile"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_userprofiles__application_x_www_form_urlencoded": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "files": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "preview": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userrefer__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "action": {
+                        "description": "`stats` to read current link & counts, `generate` to create it then read",
+                        "type": "string",
+                        "enum": [
+                            "stats",
+                            "generate"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_userrefer__application_x_www_form_urlencoded": {
+                "properties": {
+                    "link": {
+                        "type": "string",
+                        "example": "https://example.com/register/?cid=RTF_9c1185a5"
+                    },
+                    "friends": {
+                        "type": "integer",
+                        "example": 7
+                    },
+                    "verified": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "limited": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "dormant": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_usertransfer__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 42
+                    },
+                    "action": {
+                        "description": "`getAccounts` to fetch available wallets/accounts, `moveFunds` to do an internal transfer",
+                        "type": "string",
+                        "enum": [
+                            "getAccounts",
+                            "moveFunds"
+                        ],
+                        "example": "getAccounts"
+                    },
+                    "from": {
+                        "description": "Source account UID (required for moveFunds)",
+                        "type": "string",
+                        "example": "48a31126-46b6-…"
+                    },
+                    "to": {
+                        "description": "Destination account UID (required for moveFunds)",
+                        "type": "string",
+                        "example": "48a31126-46b6-…"
+                    },
+                    "amount": {
+                        "description": "Amount to transfer (required for moveFunds)",
+                        "type": "number",
+                        "format": "float",
+                        "example": 100.5
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_usertransfer__application_x_www_form_urlencoded": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "uid": {
+                                            "type": "string",
+                                            "example": "48a31126-46b6-…"
+                                        },
+                                        "label": {
+                                            "type": "string",
+                                            "example": "LIVE [10844] : 1 234.56 USD (MT5)"
+                                        },
+                                        "currency": {
+                                            "type": "string",
+                                            "example": "USD"
+                                        },
+                                        "isGlobal": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {}
+                ]
+            },
+            "ReqBody__POST__api_userwallets__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getWallets",
+                            "getLastTransactions"
+                        ],
+                        "example": "getWallets"
+                    }
+                },
+                "type": "object"
+            },
+            "Resp200__POST__api_userwallets__application_x_www_form_urlencoded": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "wallets": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "uid": {
+                                            "type": "string",
+                                            "example": "48a31126-46b6-…"
+                                        },
+                                        "login": {
+                                            "type": "integer",
+                                            "example": 10844
+                                        },
+                                        "server": {
+                                            "type": "string",
+                                            "example": "MT5"
+                                        },
+                                        "currency": {
+                                            "type": "string",
+                                            "example": "USD"
+                                        },
+                                        "balance": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 1234.56
+                                        },
+                                        "deposited": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 500
+                                        },
+                                        "withdrawn": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 200
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 987
+                                        },
+                                        "method": {
+                                            "type": "string",
+                                            "example": "Credit Card"
+                                        },
+                                        "amount": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 250
+                                        },
+                                        "currency": {
+                                            "type": "string",
+                                            "example": "USD"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "deposit"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "pending"
+                                        },
+                                        "statusFin": {
+                                            "type": "string",
+                                            "example": "completed"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2025-08-08T14:30:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ReqBody__POST__api_userwithdraw__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "netellerWithdrawMeta",
+                            "netellerWithdrawInit",
+                            "skrillWithdrawMeta",
+                            "skrillWithdrawInit",
+                            "bankWithdrawMeta",
+                            "bankWithdrawInit"
+                        ],
+                        "example": "netellerWithdrawMeta"
+                    },
+                    "wallet": {
+                        "description": "UID of the source account",
+                        "type": "string",
+                        "example": "48a31126-46b6-…"
+                    },
+                    "amount": {
+                        "description": "Amount to withdraw",
+                        "type": "number",
+                        "format": "float",
+                        "example": 250
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "neteller": {
+                        "description": "Neteller purse ID when action=netellerWithdrawInit",
+                        "type": "string",
+                        "example": "N123456789"
+                    },
+                    "skrill": {
+                        "description": "Skrill purse ID when action=skrillWithdrawInit",
+                        "type": "string",
+                        "example": "S123456789"
+                    },
+                    "secure_password": {
+                        "description": "User's secure PIN/password",
+                        "type": "string",
+                        "example": "1234"
+                    }
+                },
+                "type": "object"
+            },
+            "ReqBody__POST__api_userwithdrawals__application_x_www_form_urlencoded": {
+                "required": [
+                    "user_id",
+                    "action"
+                ],
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "getWithdrawOptions"
+                        ],
+                        "example": "getWithdrawOptions"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "requestBodies": {},
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Paste the JWT you get from /api/auth (login/register). Swagger UI will send it as: Authorization: Bearer {token}",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Activation",
+            "description": "Public endpoints for sending activation code and activating account"
+        },
+        {
+            "name": "Partners Preprocess",
+            "description": "Handle IB partnership and campaign click preprocessing"
+        },
+        {
+            "name": "User Account",
+            "description": "User Account"
+        },
+        {
+            "name": "Analyst Link",
+            "description": "Generate or retrieve the secure Analyst URL for a user"
+        },
+        {
+            "name": "Trading Central",
+            "description": "Trading Central"
+        },
+        {
+            "name": "Wallets",
+            "description": "Wallets"
+        },
+        {
+            "name": "Referral",
+            "description": "Referral"
+        },
+        {
+            "name": "Messenger",
+            "description": "Messenger"
+        },
+        {
+            "name": "User Profile",
+            "description": "User Profile"
+        },
+        {
+            "name": "User Activation",
+            "description": "User Activation"
+        },
+        {
+            "name": "Account",
+            "description": "Account"
+        },
+        {
+            "name": "Transactions",
+            "description": "Transactions"
+        },
+        {
+            "name": "User Deposits",
+            "description": "User Deposits"
+        },
+        {
+            "name": "User Withdrawals",
+            "description": "User Withdrawals"
+        },
+        {
+            "name": "User Transfer",
+            "description": "User Transfer"
+        },
+        {
+            "name": "Partners",
+            "description": "Partners"
+        },
+        {
+            "name": "Sales Leads",
+            "description": "Manage and query sales leads"
+        },
+        {
+            "name": "Sales Report",
+            "description": "Sales report"
+        },
+        {
+            "name": "Sales Demos",
+            "description": "Sales Demos"
+        },
+        {
+            "name": "Admin Dashboard",
+            "description": "Admin dashboard endpoints"
+        },
+        {
+            "name": "Admin Profiles",
+            "description": "Endpoints to list, fetch, preview/download, update, and manage profile documents"
+        },
+        {
+            "name": "Admin Details",
+            "description": "Retrieve or modify detailed user/account/transaction data"
+        },
+        {
+            "name": "Admin Transactions",
+            "description": "Admin endpoints for listing and managing transactions"
+        },
+        {
+            "name": "Admin Documents",
+            "description": "Admin operations for user documents (list, info, approve/decline, delete, translate, set expiration)"
+        },
+        {
+            "name": "Admin Types",
+            "description": "CRUD and lookup endpoints for configuration Types"
+        },
+        {
+            "name": "Admin Leads",
+            "description": "Admin endpoints for querying and managing client leads and reports"
+        },
+        {
+            "name": "MT5 Accounts",
+            "description": "List and query MT5 trading accounts"
+        },
+        {
+            "name": "Admin Marketing",
+            "description": "Create and manage campaigns, toggle status, and fetch marketing statistics"
+        },
+        {
+            "name": "Admin Settings",
+            "description": "Endpoints for searching users/IBs, updating client-IB relations, and managing queued tasks"
+        },
+        {
+            "name": "Accounts Report",
+            "description": "Endpoints for generating accounts reports"
+        },
+        {
+            "name": "Custom Report",
+            "description": "Endpoints for retrieving report headers and custom report data"
+        }
+    ]
+}

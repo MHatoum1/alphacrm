@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 40 80">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #606060;
+      }
+
+      .cls-3 {
+        fill: #eb2229;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-3" x="1.27" y=".79" width="46.04" height="76.87"/>
+    <g>
+      <polyline class="cls-1" points="8.49 46.7 32.83 46.7 36.54 43.67 32.76 40.78 8.49 40.78"/>
+      <polyline class="cls-1" points="8.49 69.14 17.45 69.14 21.16 66.11 17.38 63.21 8.49 63.21"/>
+      <polyline class="cls-1" points="8.49 58.45 24.73 58.45 28.44 55.42 24.66 52.53 8.49 52.53"/>
+    </g>
+  </g>
+</svg>
