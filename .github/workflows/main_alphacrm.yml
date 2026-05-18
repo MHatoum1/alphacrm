@@ -58,7 +58,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'securesite'
+          app-name: 'alphacrm'
           slot-name: 'Production'
           package: './node-app'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E59777F3AC2F4124938F88910F185BC7 }}
