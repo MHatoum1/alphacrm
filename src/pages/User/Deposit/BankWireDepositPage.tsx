@@ -193,7 +193,7 @@ export default function BankWireDepositPage() {
      Everything is available on the page – no extra API request needed.
   ------------------------------------------------------------------ */
   const selBank = banks.find((b) => b.code === bank);
-  const company_name = noneuropean ? "FxGrow Limited" : "Growell Capital Ltd.";
+  const company_name = noneuropean ? "Alpha Trust AI" : "Growell Capital Ltd.";
 
   const company_address = noneuropean
     ? "Icount building, First Floor, Kumul Highway, Port Vila, Vanuatu"
@@ -225,7 +225,7 @@ export default function BankWireDepositPage() {
 
     /* 2 ── map every ###PLACEHOLDER### to a value  */
     const map: Record<string, string> = {
-      "COMPANY NAME": "FxGrow Limited",
+      "COMPANY NAME": "Alpha Trust AI",
       "COMPANY ADDRESS":
         "Icount building, First Floor, Kumul Highway, Port Vila, Vanuatu",
       REFERENCE: `Reference ${reference}`,

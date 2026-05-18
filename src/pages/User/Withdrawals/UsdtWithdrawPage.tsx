@@ -16,7 +16,7 @@ export default function UsdtWithdrawPage() {
 
         <Typography variant="body1">
           {t("withdraw_usdt_contact")}{" "}
-          <Link href="mailto:info@fxgrow.co">info@fxgrow.co</Link>
+          <Link href="mailto:info@alphatrust.ai">info@alphatrust.ai</Link>
         </Typography>
       </Paper>
     </Box>

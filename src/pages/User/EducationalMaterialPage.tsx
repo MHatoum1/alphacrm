@@ -63,7 +63,7 @@ export default function EducationalMaterialPage() {
           height="360"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
-          title="FxGrow educational video"
+          title="Alpha Trust AI educational video"
         />
       </Box>
     </Box>

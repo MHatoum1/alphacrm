@@ -134,7 +134,7 @@ const HomeHeader: React.FC = () => {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <img
               src="/images/logo.png"
-              alt="FxGrow Logo"
+              alt="Alpha Trust AI Logo"
               style={{ height: 80, marginRight: 8 }}
             />
           </Box>

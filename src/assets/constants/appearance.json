@@ -276,17 +276,17 @@
    },
    "documents": {
       "EU": {
-         "http://fxgrow.com/pdf/ClientTermsandConditionsAgreement.pdf": "terms_and_conditions",
-         "http://fxgrow.com/pdf/Risk-Disclosure.pdf": "risk_disclosure",
-         "http://fxgrow.com/pdf/TradingRules.pdf": "trading_rules",
-         "https://fxgrow.com/en/legal-documents": "legal_documents"
+         "https://alphatrust.ai/pdf/ClientTermsandConditionsAgreement.pdf": "terms_and_conditions",
+         "https://alphatrust.ai/pdf/Risk-Disclosure.pdf": "risk_disclosure",
+         "https://alphatrust.ai/pdf/TradingRules.pdf": "trading_rules",
+         "https://alphatrust.ai/en/legal-documents": "legal_documents"
       },
       "NonEU": {
-         "http://fxgrow.com/pdf/co/TermsAndConditions.pdf": "terms_and_conditions",
-         "http://fxgrow.com/pdf/co/Risk_Disclosure.pdf": "risk_disclosure",
-         "http://fxgrow.com/pdf/TradingRules.pdf": "trading_rules",
-         "http://fxgrow.com/pdf/Disclaimer-New.pdf": "disclaimer",
-         "https://fxgrow.com/en/legal-documents": "legal_documents"
+         "https://alphatrust.ai/pdf/co/TermsAndConditions.pdf": "terms_and_conditions",
+         "https://alphatrust.ai/pdf/co/Risk_Disclosure.pdf": "risk_disclosure",
+         "https://alphatrust.ai/pdf/TradingRules.pdf": "trading_rules",
+         "https://alphatrust.ai/pdf/Disclaimer-New.pdf": "disclaimer",
+         "https://alphatrust.ai/en/legal-documents": "legal_documents"
       }
    },
    "account_names": {
@@ -299,7 +299,7 @@
       "trial": 14
    },
    "analyst": {
-      "url": "https://site.recognia.com/fxgrow/serve.shtml?tkn=:",
+      "url": "https://site.recognia.com/alphatrustai/serve.shtml?tkn=:",
       "key": "v4hw8oi#$^#$r^@$21e!5@sa:",
       "trial": 14
    }

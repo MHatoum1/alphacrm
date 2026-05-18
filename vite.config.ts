@@ -7,7 +7,7 @@ import viteImagemin from "vite-plugin-imagemin";
 export default ({ mode }) => {
   // Load .env files and allow overriding the relay target:
   const env = loadEnv(mode, process.cwd(), "");
-  const relayTarget = env.VITE_RELAY_TARGET || "https://secure-api.fxgrow.com";
+  const relayTarget = env.VITE_RELAY_TARGET || "https://secure-api.alphatrust.ai";
 
   const config = {
     plugins: [

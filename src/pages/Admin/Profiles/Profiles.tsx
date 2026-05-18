@@ -13,10 +13,7 @@ import { useSelector } from "react-redux"; // ⬅️ add
 
 // restricted emails (same list you use elsewhere)
 const RESTRICTED_EMAILS = new Set([
-  "info+cy@fxgrow.com",
-  "ademetriou+cy@fxgrow.com",
-  "nmikati+1@fxgrow.com",
-  "mahdim@fxgrow.com",
+  "info@alphatrust.ai"
 ]);
 
 const isRestricted = () => {

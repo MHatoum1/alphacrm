@@ -79,7 +79,7 @@ const HomeFooter: React.FC = () => {
 
         {/* Brokerage disclaimers & text */}
         <Typography variant="body2" sx={{ mb: 2, direction, textAlign }}>
-          {t("footer_fxgrow_description")}
+          {t("footer_alphatrust_description")}
         </Typography>
 
         {/* Social Icons */}
@@ -93,45 +93,31 @@ const HomeFooter: React.FC = () => {
       >
         {[
           {
-            href: "https://www.facebook.com/fxgrow.international",
+            href: "https://facebook.com/alphatrustai",
             src: "/images/social/fb-icon.png",
             alt: "facebook",
           },
           {
-            href: "https://www.instagram.com/fxgrow",
+            href: "https://instagram.com/alphatrustai",
             src: "/images/social/instagram.png",
             alt: "instagram",
           },
           {
-            href: "https://twitter.com/fxgrow",
-            src: "/images/social/twitter-icon.png",
-            alt: "twitter",
-          },
-          {
-            href: "https://www.linkedin.com/company/fxgrow",
+            href: "https://linkedin.com/company/alpha-trust-ai",
             src: "/images/social/linkedin.png",
             alt: "linkedin",
           },
           {
-            href: "https://www.youtube.com/channel/UCIW5WD2-she6NUQX9XEsnOQ?view_as=subscriber",
+            href: "https://youtube.com/@alphatrustai",
             src: "/images/social/youtube.png",
             alt: "youtube",
           },
           {
-            href: "https://www.threads.net/@fxgrow",
-            src: "/images/social/threads.png",
-            alt: "threads",
-          },
-          {
-            href: "https://www.tiktok.com/@fxgrow",
+            href: "https://tiktok.com/@alphatrustai",
             src: "/images/social/tiktok.png",
             alt: "tiktok",
           },
-          {
-            href: "https://www.t.me/fxgrowofficial",
-            src: "/images/social/telegram.png",
-            alt: "telegram",
-          },
+
         ].map(({ href, src, alt }) => (
           <Grid
             item
@@ -148,11 +134,11 @@ const HomeFooter: React.FC = () => {
 
         <Typography variant="body2" sx={{ fontSize: 13, direction, textAlign }}>
           {t("footer_risk_warning")}{" "}
-          <a href="http://fxgrow.com/pdf/Risk-Disclosure.pdf">
+          <a href="https://alphatrust.ai/pdf/Risk-Disclosure.pdf">
             {t("footer_risk_disclosure")}
           </a>{" "}
           {t("and")}{" "}
-          <a href="http://fxgrow.com/pdf/Terms-And-Conditions-For-The-Use-Of-The-Website.pdf">
+          <a href="https://alphatrust.ai/pdf/Terms-And-Conditions-For-The-Use-Of-The-Website.pdf">
             {t("footer_terms_conditions")}
           </a>
           <br />

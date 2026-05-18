@@ -18,7 +18,7 @@ import type { RootState } from "@/redux/store";
 import { updateProfile, Profile } from "@/redux/slices/adminProfileReviewSlice";
 import appearance from "@/assets/constants/appearance.json";
 import { useEffect, useState } from "react";
-import pdfIcon from "@/assets/images/branding/fxgrow.com/pdf.png";
+import pdfIcon from "@/assets/images/branding/alphatrust.ai/pdf.png";
 import CustomNotification from "@/components/ui/CustomNotification";
 import CustomError from "@/components/ui/CustomError";
 import { useTranslation } from "react-i18next";

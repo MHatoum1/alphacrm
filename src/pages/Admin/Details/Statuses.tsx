@@ -31,10 +31,7 @@ import Flag from "@/components/ui/Flag";
 import RadioItem from "@/components/ui/RadioItem";
 
 const RESTRICTED_EMAILS = new Set([
-  "info+cy@fxgrow.com",
-  "ademetriou+cy@fxgrow.com",
-  "nmikati+1@fxgrow.com",
-  "mahdim@fxgrow.com",
+  "info@alphatrust.ai"
 ]);
 
 const isRestrictedUser = (): boolean => {

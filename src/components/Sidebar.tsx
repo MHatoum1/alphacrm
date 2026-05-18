@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 import { RouteConfig, routesConfig } from "@/routesConfig";
-import logo from "../assets/images/fxgrow_logo_icon.svg";
-import logo_full from "../assets/images/fxgrow_logo_full.svg";
+import logo from "../assets/images/alpha-trust-website-favicon-color.svg";
+import logo_full from "../assets/images/alpha-trust-logo.png";
 import { isRestrictedUser } from "@/utils/restrictions";
 
 // src/components/Sidebar.tsx
@@ -328,7 +328,7 @@ const navItemsMobile = routesConfig
               /* ─── extended: full-width logo ───────────────────────────── */
               <img
                 src={logo_full}
-                alt="FxGrow"
+                alt="Alpha Trust AI"
                 className="nav__logo nav__logo--full"
               />
             ) : (
@@ -336,7 +336,7 @@ const navItemsMobile = routesConfig
               <div className="nav__preview">
                 <img
                   src={logo}
-                  alt="FxGrow"
+                  alt="Alpha Trust AI"
                   className="nav__logo nav__logo--icon"
                 />
               </div>

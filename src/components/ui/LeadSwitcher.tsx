@@ -57,11 +57,8 @@ export const leadsTabs = (
 
   // PHP-equivalent rules
   const RESTRICTED_EMAILS = new Set([
-    "info+cy@fxgrow.com",
-    "ademetriou+cy@fxgrow.com",
-    "nmikati+1@fxgrow.com",
-    "mahdim@fxgrow.com",
-    // note: "mh+admin@equitick.com" was *not* restricted in your PHP filter
+    "info@alphatrust.ai"
+
   ]);
 
   // Sales → no menu

@@ -490,7 +490,7 @@ const Register: React.FC = () => {
                     <Typography variant="body2">
                       {t("i_accept_the")}{" "}
                       <Link
-                        href="https://fxgrow.com/pdf/terms-and-conditions-for-the-use-of-the-website.pdf"
+                        href="https://alphatrust.ai/pdf/terms-and-conditions-for-the-use-of-the-website.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         underline="always"

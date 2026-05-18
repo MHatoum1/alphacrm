@@ -1482,7 +1482,7 @@ export const routesConfig: RouteConfig[] = [
   {
     path: "download_mt5",
     titleKey: "download_mt5",
-    external: "https://fxgrow.com/add/fxgrow/fxgrow5setup.exe",
+    external: "https://alphatrust.ai/add/alphatrustai/alphatrustai5setup.exe",
     roles: ["secure"],
     icon: "la la-file-download",
   },

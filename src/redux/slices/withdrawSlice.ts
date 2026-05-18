@@ -14,10 +14,9 @@ export const fetchWithdrawOptions = createAsyncThunk<
     });
     const { data } = await axios.post("/userwithdrawals", body);
     // file the response such that if the user_id is NOT 123 to remove the whish option
-    
-        /*louay@yahoo.com,mmazeh94@gmail.com,mahdim+2@fxgrow.com,mozeir+client@equitick.com,mh+account@equitick.com,mmazeh8+1@gmail.com*/
-    if (user_id != "70574" && user_id != "71587" && user_id != "105630" && user_id != "1747"  && user_id != "25738"  && user_id != "109023" && user_id != "63220" ) {
-      
+
+    if (user_id != "70574" && user_id != "71587" && user_id != "105630" && user_id != "1747" && user_id != "25738" && user_id != "109023" && user_id != "63220") {
+
       data.data.rows = data.data.rows.filter((option: any) => option.name !== "Debit/Credit" && option.name !== "Google Pay" && option.name !== "Apple Pay");
     }
 

@@ -304,7 +304,7 @@ const Register: React.FC = () => {
               variant="h3"
               sx={{ fontSize: isMobile ? 24 : 32, fontWeight: "bold", mb: 1 }}
             >
-              {t("welcome_fxgrow")}
+              {t("welcome_alphatrust")}
             </Typography>
             <Typography variant="body1" sx={{ mb: 2 }}>
               {t("watch_the_market")}

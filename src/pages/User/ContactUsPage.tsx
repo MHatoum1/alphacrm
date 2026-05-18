@@ -26,38 +26,38 @@ const CONTACTS = {
     working: "Mon-Fri  07:00 – 18:00 GMT +3",
     phone: "+357-25-211707",
     fax: "+357-25-729930",
-    email: "info@fxgrow.com",
-    skype: "fxgrow.support",
+    email: "info@alphatrust.ai",
+    skype: "alphatrust.ai",
   },
   PARTNERSHIPS: {
     working: "Mon-Fri  09:00 – 18:00 GMT +3",
     phone: "+357-25-211707",
-    email: "info@fxgrow.com",
+    email: "info@alphatrust.ai",
   },
   SUPPORT: {
     working: "24 hours / 5",
     phone: "+357-25-211707",
-    email: "support@fxgrow.com",
+    email: "support@alphatrust.ai",
   },
   BACKOFFICE: {
     working: "Mon-Fri  09:00 – 18:00 GMT +3",
     phone: "+357-25-211707",
-    email: "info@fxgrow.com",
+    email: "info@alphatrust.ai",
   },
   ACCOUNTING: {
     working: "Mon-Fri  09:00 – 18:00 GMT +3",
     phone: "+357-25-211707",
-    email: "accounting@fxgrow.com",
+    email: "info@alphatrust.ai",
   },
   HR: {
     working: "Mon-Fri  09:00 – 18:00 GMT +3",
     phone: "+357-25-211707",
-    email: "hr@fxgrow.com",
+    email: "hr@alphatrust.ai",
   },
   PR: {
     working: "Mon-Fri  09:00 – 18:00 GMT +3",
     phone: "+357-25-211707 ext 204",
-    email: "pr@fxgrow.com",
+    email: "pr@alphatrust.ai",
   },
 } as const;
 
@@ -266,44 +266,29 @@ export default function ContactUsPage() {
       >
         {[
           {
-            href: "https://www.facebook.com/fxgrow.international",
+            href: "https://facebook.com/alphatrustai",
             src: "/images/social/fb-icon.png",
             alt: "facebook",
           },
           {
-            href: "https://www.instagram.com/fxgrow",
+            href: "https://instagram.com/alphatrustai",
             src: "/images/social/instagram.png",
             alt: "instagram",
           },
           {
-            href: "https://twitter.com/fxgrow",
-            src: "/images/social/twitter-icon.png",
-            alt: "twitter",
-          },
-          {
-            href: "https://www.linkedin.com/company/fxgrow",
+            href: "https://linkedin.com/company/alpha-trust-ai",
             src: "/images/social/linkedin.png",
             alt: "linkedin",
           },
           {
-            href: "https://www.youtube.com/channel/UCIW5WD2-she6NUQX9XEsnOQ?view_as=subscriber",
+            href: "https://youtube.com/@alphatrustai",
             src: "/images/social/youtube.png",
             alt: "youtube",
           },
           {
-            href: "https://www.threads.net/@fxgrow",
-            src: "/images/social/threads.png",
-            alt: "threads",
-          },
-          {
-            href: "https://www.tiktok.com/@fxgrow",
+            href: "https://tiktok.com/@alphatrustai",
             src: "/images/social/tiktok.png",
             alt: "tiktok",
-          },
-          {
-            href: "https://www.t.me/fxgrowofficial",
-            src: "/images/social/telegram.png",
-            alt: "telegram",
           },
         ].map(({ href, src, alt }) => (
           <Grid

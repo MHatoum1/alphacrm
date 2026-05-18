@@ -52,10 +52,7 @@ export default function ReviewMenu() {
     ? ["ib_details"]
     : [
         "mh+admin@equitick.com",
-        "info+cy@fxgrow.com",
-        "ademetriou+cy@fxgrow.com",
-        "nmikati+1@fxgrow.com",
-        "mahdim@fxgrow.com"
+        "info@alphatrust.ai"
       ].includes(adminEmail || "")
     ? ["risk_assessment", "cdd"]
     : [];
