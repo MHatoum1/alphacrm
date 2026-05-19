@@ -79,7 +79,7 @@ const HomeFooter: React.FC = () => {
 
         {/* Brokerage disclaimers & text */}
         <Typography variant="body2" sx={{ mb: 2, direction, textAlign }}>
-          {t("footer_alphatrust_description")}
+          {t("footer_fxgrow_description")}
         </Typography>
 
         {/* Social Icons */}
